@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yingbo Liu's Portfolio</title>
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="index.css" />
+    <script defer src="./assets/fontawesome/js/fontawesome.min.js"></script>
+    <script defer src="./assets/fontawesome/js/all.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <a href="#" tabindex="1" onclick="showHome()">Home</a>
+      <a href="#" tabindex="2" onclick="loadFunProjects()">Fun projects</a>
+      <a href="#" tabindex="3">Contact me</a>
+      <div class="navbar-right">
+        <a href="#search">Search</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container" id="content">
+      <div class="left">
+        <div class="left-top">
+          <img src="./images/bio.jpg" alt="My Photo" class="photo" />
+        </div>
+        <div class="left-bottom">
+          <div class="icons">
+            <a href="https://www.linkedin.com" target="_blank"
+              ><i class="fa-brands fa-linkedin fa-xl"></i
+            ></a>
+            <a href="https://www.github.com" target="_blank"
+              ><i class="fa-brands fa-github fa-xl"></i
+            ></a>
+            <a href="https://www.github.com" target="_blank"
+              ><i class="fa-solid fa-envelope fa-xl"></i
+            ></a>
+          </div>
+          <div class="description">
+            Hi, I'm Yingbo Liu, a full-stack developer with expertise in Java
+            and React. I love building scalable and secure web applications.
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="shell" id="shell">
+          <div class="output-line">Welcome to my shell playground!</div>
+          <div class="output-line">Type 'list' for available commands.</div>
+          <div class="input-line" id="input-line">></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const COMMANDS = {
+        list: "",
+        whoami:
+          "I am a full-stack developer with expertise in Java, React, and web technologies.",
+        bio: "Bio: A passionate developer with a focus on building scalable and secure applications.",
+      };
+
+      COMMANDS.list = `
+        <ul>
+        ${Object.keys(COMMANDS)
+          .map((cmd) => `<li onclick="simulateCommand('${cmd}')">${cmd}</li>`)
+          .join("")}
+        </ul>`;
+      // Prevent default page reload for "Fun projects" by loading content dynamically
+      function loadFunProjects() {
+        const contentDiv = document.getElementById("content");
+        contentDiv.innerHTML = `
+                <h2>Fun Projects</h2>
+                <p>Here are some of the projects I've worked on...</p>
+                <!-- Add more details about projects here -->
+            `;
+      }
+
+      function showHome() {
+        location.reload();
+      }
+
+      // Function to simulate a user command when clicking on a list item
+      function simulateCommand(command) {
+        inputLine.innerText = `> ${command}`;
+        const event = new KeyboardEvent("keydown", { key: "Enter" });
+        document.dispatchEvent(event);
+      }
+
+      // Shell interaction
+      const shell = document.getElementById("shell");
+      const inputLine = document.getElementById("input-line");
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          console.log("input line:" + inputLine.innerText);
+          const command = inputLine.innerText.replace(">", "").trim();
+
+          let output = inputLine.innerText + "<br>" + 
+            COMMANDS[command] ||
+            'Command not found. Try "list" for available commands.';
+
+          const newOutputLine = document.createElement("div");
+          newOutputLine.classList.add("output-line");
+          newOutputLine.innerHTML = output;
+          shell.insertBefore(newOutputLine, inputLine);
+
+          inputLine.innerText = "> ";
+          shell.scrollTop = shell.scrollHeight;
+        } else {
+          console.log(
+            "event code:" +
+              event.keyCode +
+              ", event key:" +
+              event.key +
+              ", event key length:" +
+              event.key.length
+          );
+          if (event.key.length == 1) {
+            inputLine.innerText += event.key;
+          } else {
+            const keyID = event.keyCode;
+            console.log(keyID);
+            switch (keyID) {
+              case 8: //backspace
+                let inputValue = inputLine.innerText;
+                inputValue =
+                  inputValue.length > 0
+                    ? inputValue.substring(0, inputValue.length - 1)
+                    : inputValue;
+                inputLine.innerText = inputValue;
+                break;
+              // case 32:
+              //     inputLine.innerText += " ";
+              //     console.log("inputLine.innerText after space:"+inputLine.innerText);
+              //     break;
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

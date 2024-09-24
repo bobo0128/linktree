@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.navbar a[tabindex]:focus {
+    color: blue;
+    outline:none;
+}
+
+.navbar-right {
+    float: right;
+    margin-right: 10px;
+}
+
+/* Layout styling */
+.container {
+    display: flex;
+    padding: 20px;
+    height: calc(100vh - 90px);
+    
+}
+
+.left {
+    width: 60%;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Spacing between top and bottom sections */
+}
+
+.left-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right {
+    width: 40%;
+    height:auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: hidden;
+}
+
+.photo {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 50%;
+    display: block;
+    margin:auto;
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 10px; /* Adds space between icons and description */
+}
+
+.icons a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+
+.description {
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.shell {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: monospace;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.input-line {
+    color: #0f0;
+}
+
+.output-line {
+    margin: 4px 0;
+}
