@@ -11,17 +11,24 @@
   </head>
 
   <body>
-    <!-- Navbar -->
-    <div class="navbar">
-      <a href="#" tabindex="1" onclick="showHome()">Home</a>
-      <a href="#" tabindex="2" onclick="loadFunProjects()">Fun projects</a>
-      <a href="#" tabindex="3">Contact me</a>
-      <div class="navbar-right">
-        <a href="#search">Search</a>
-        <a href="#about">About</a>
+    <nav class="navbar">
+      <!-- Navbar Left -->
+      <div class="navbar-left">
+        <a href="#" tabindex="1" onclick="showHome()">Home</a>
+        <a href="#" tabindex="2" onclick="loadFunProjects()">Fun projects</a>
       </div>
-    </div>
 
+      <!-- Navbar Right -->
+      <div class="navbar-right">
+        <!-- Color Picker -->
+        <input
+          type="color"
+          id="colorPicker"
+          value="#ffffff"
+          title="Choose Theme Color"
+        />
+      </div>
+    </nav>
     <!-- Main Container -->
     <div class="container" id="content">
       <div class="left">
@@ -35,9 +42,6 @@
             ></a>
             <a href="https://www.github.com" target="_blank"
               ><i class="fa-brands fa-github fa-xl"></i
-            ></a>
-            <a href="https://www.github.com" target="_blank"
-              ><i class="fa-solid fa-envelope fa-xl"></i
             ></a>
           </div>
           <div class="description">
@@ -94,13 +98,24 @@
       const shell = document.getElementById("shell");
       const inputLine = document.getElementById("input-line");
 
+      // Color picker for theme color
+      const colorPicker = document.getElementById("colorPicker");
+      colorPicker.addEventListener("input", (event) => {
+        const themeColor = event.target.value;
+
+        // Apply the theme color to various parts of the page
+        document.body.style.backgroundColor = themeColor; // Background color
+        document.getElementById("navbar").style.backgroundColor = themeColor; // Navbar color
+        document.getElementById("shell").style.backgroundColor = themeColor; // Shell background color
+      });
+
       document.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
           console.log("input line:" + inputLine.innerText);
           const command = inputLine.innerText.replace(">", "").trim();
 
-          let output = inputLine.innerText + "<br>" + 
-            COMMANDS[command] ||
+          let output =
+            inputLine.innerText + "<br>" + COMMANDS[command] ||
             'Command not found. Try "list" for available commands.';
 
           const newOutputLine = document.createElement("div");
