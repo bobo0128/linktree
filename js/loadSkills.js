@@ -4,37 +4,37 @@ const skills = [
     name: "React",
     iconClass: "fa-brands fa-react",
     color: "#61DBFB",
-    description: "I will learn React in InceptionU."
+    description: "I will learn React in InceptionU.",
   },
   {
     name: "Java",
     iconClass: "fa-brands fa-java",
     color: "#f89820",
-    description: "I had been a Java engineer for several years."
+    description: "I had been a Java engineer for several years.",
   },
   {
     name: "Node",
     iconClass: "fa-brands fa-node-js",
     color: "#68A063",
-    description: "I will learn Node in InceptionU."
+    description: "I will learn Node in InceptionU.",
   },
   {
     name: "Python",
     iconClass: "fa-brands fa-python",
     color: "#3776AB",
-    description: "I am learning ..."
+    description: "I am learning ...",
   },
   {
     name: "Html",
     iconClass: "fa-brands fa-html5 fa-lg",
     color: "#e34c26",
-    description: "My html skill is enhanced in InceptionU."
+    description: "My html skill is enhanced in InceptionU.",
   },
   {
     name: "CSS",
     iconClass: "fa-brands fa-css3-alt",
     color: "#1a63e0",
-    description: "I am not good at CSS."
+    description: "I am not good at CSS.",
   },
 ];
 
@@ -90,6 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
     skillText.classList.add("skill-text");
     skillText.textContent = skill.name;
 
+    // Create tooltip element
+    const tooltip = document.createElement("div");
+    tooltip.classList.add("tooltip");
+    tooltip.textContent = "Drag me to shell window and explore my skill";
+
+    // Append tooltip to skill card
+    skillCard.appendChild(tooltip);
+
     // Append to skill card
     skillCard.appendChild(iconElement);
     skillCard.appendChild(skillText);
@@ -100,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function swapCards(card1, card2) {
-
     const cell1 = card1.parentNode;
     const cell2 = card2.parentNode;
 
