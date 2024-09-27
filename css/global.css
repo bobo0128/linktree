@@ -5,7 +5,8 @@ body {
     overflow: hidden;
     background-image: url('../images/mainbg.jpg');
     background-size: cover;
-    background-blend-mode: overlay; /* Blends the color and image */
+    background-blend-mode: overlay;
+    /* Blends the color and image */
 }
 
 .navbar {
@@ -232,13 +233,13 @@ body {
 h1 {
     color: #da1883;
     font-size: 20px;
-  }
+}
 
-  h2 {
+h2 {
     font-weight: bold;
     color: #e26737;
     font-size: 20px;
-  }
+}
 
 .text {
     display: flex;
@@ -270,7 +271,28 @@ h1 {
     }
 
     .skill-cards {
-        margin-right: 0;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .skill-cards table {
+        border-spacing: 10px;
+    }
+
+    /* Adjust the table layout for mobile screens */
+    .skill-cards td {
+        display: block;
+        /* Makes the table cells stack vertically */
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: left;
+        /* Align text to the left for better readability */
+    }
+
+    /* Center skill cards in the viewport */
+    .skill-cards table {
+        display: block;
+        width: 100%;
     }
 
     /* Adjust tooltip padding, font size, and positioning */
@@ -299,6 +321,18 @@ h1 {
 
     .skill-card {
         width: 60px;
+    }
+
+    .skill-cards table {
+        border-spacing: 5px;
+    }
+
+    .skill-cards td {
+        font-size: 0.9rem;
+    }
+
+    .skill-cards i {
+        font-size: 1.5rem; /* Resize icons */
     }
 
     #contactForm {
