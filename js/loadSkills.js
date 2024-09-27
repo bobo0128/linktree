@@ -41,18 +41,15 @@ const skills = [
 const skillCountInARow = 6;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const skillTable = document.getElementById("skill-table");
+  const skillCardsContainer = document.querySelector(".skill-cards-container");
   let draggedCard = null;
 
-  let currentRow;
-  skills.forEach((skill, index) => {
+  skills.forEach((skill) => {
     // Create a new row every 5 skills (for wrapping)
-    if (index % skillCountInARow === 0) {
-      currentRow = document.createElement("tr");
-      skillTable.appendChild(currentRow);
-    }
-
-    const skillCell = document.createElement("td");
+    // if (index % skillCountInARow === 0) {
+    //   currentRow = document.createElement("tr");
+    //   skillTable.appendChild(currentRow);
+    // }
     const skillCard = document.createElement("div");
     skillCard.classList.add("skill-card");
 
@@ -103,8 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
     skillCard.appendChild(skillText);
 
     // Append to cell, and cell to the current row
-    skillCell.appendChild(skillCard);
-    currentRow.appendChild(skillCell);
+    // Append skill card to the container
+    skillCardsContainer.appendChild(skillCard);
   });
 
   function swapCards(card1, card2) {
