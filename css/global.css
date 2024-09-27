@@ -267,7 +267,7 @@ h1 {
 /* Skill Cards Table */
 
 .skill-cards {
-    background-image: url("/images/bg.jpg");
+    background-image: url("../images/bg.jpg");
     margin-bottom: 20px;
     margin-right: 20px;
     border-radius: 10px;
