@@ -11,11 +11,12 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: transparent;
     overflow: hidden;
 }
 
-.navbar-left a, .navbar-right a {
+.navbar-left a,
+.navbar-right a {
     display: inline-block;
     color: #f2f2f2;
     padding: 10px 15px;
@@ -34,7 +35,7 @@ body {
 
 .navbar a[tabindex]:focus {
     color: blue;
-    outline:none;
+    outline: none;
 }
 
 .navbar-right input[type="color"] {
@@ -44,7 +45,8 @@ body {
     cursor: pointer;
 }
 
-.navbar-left a:hover, .navbar-right a:hover {
+.navbar-left a:hover,
+.navbar-right a:hover {
     background-color: #575757;
     color: #ffffff;
 }
@@ -54,44 +56,121 @@ body {
     align-items: center;
 }
 
+.navbar-right {
+    position: relative;
+    display: inline-block;
+  }
+
+  .email-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+  }
+
+  /* Tooltip styling */
+  .navbar-right .tooltip {
+    visibility: hidden;
+    width: 100px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    bottom: 125%; /* Position tooltip above the icon */
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .navbar-right:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Contact form styling */
+  #contactForm {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000; 
+  }
+
+  #contactForm input, #contactForm textarea {
+    width: 92%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .close-button {
+    position: absolute; /* Position the close button */
+    top: 2px; /* Adjust distance from top */
+    right: 5px; /* Adjust distance from right */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 15px; /* Size of the X */
+    color: #1456c8; /* Color of the close button */
+    font-weight: bold; /* Make it bold */
+  }
+
+  #contactForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #contactForm button:hover {
+    background-color: #45a049;
+  }
+
+  /* Success message styling */
+  .success-message {
+    display: none;
+    text-align: center;
+    font-size: 16px;
+    color: green;
+  }
+
 /* Layout styling */
 .container {
     display: flex;
     padding: 20px;
     height: calc(100vh - 90px);
-    
+
 }
 
 .left {
+    display: grid;
+    grid-template-rows: auto auto;
     width: 60%;
-    padding-right: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* Two rows: first for bio, second for linktree */
+    gap: 10px;
 }
 
-.left-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px; /* Spacing between top and bottom sections */
+.bio-row {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    /* Two columns: bio photo (fixed size) and bio summary (flexible) */
+    gap: 20px;
+    height: 70%;
 }
 
-.left-bottom {
+.bio-photo {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-.right {
-    width: 40%;
-    height:auto;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-y: hidden;
 }
 
 .photo {
@@ -99,14 +178,30 @@ body {
     max-width: 400px;
     border-radius: 50%;
     display: block;
-    margin:auto;
+    margin: auto;
+}
+
+.bio-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right {
+    width: 40%;
+    height: auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: hidden;
 }
 
 .icons {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-bottom: 10px; /* Adds space between icons and description */
+    margin-bottom: 10px;
+    /* Adds space between icons and description */
 }
 
 .icons a {
@@ -115,10 +210,22 @@ body {
     color: #333;
 }
 
+.icons a:hover {
+    transform: scale(1.05);
+}
+
+/* Bio Summary and Icons */
 .description {
-    text-align: center;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff5fe7, #7bfe8a);
+    -webkit-background-clip: text;
+    background-clip:calc();
+    color: transparent;
+    
 }
 
 .shell {
@@ -137,4 +244,195 @@ body {
 
 .output-line {
     margin: 4px 0;
+}
+
+h1 {
+    color: #da1883;
+    font-size: 20px;
+  }
+
+  h2 {
+    font-weight: bold;
+    color: #e26737;
+    font-size: 20px;
+  }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Skill Cards Table */
+
+.skill-cards {
+    background-image: url("/images/bg.jpg");
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.skill-cards table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 20px;
+    /* Space between table cells */
+}
+
+.skill-cards td {
+    padding: 0;
+    text-align: center;
+}
+
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 20%;
+    padding: 2px;
+    background: linear-gradient(135deg, #9fc6e1, #e0f7fa);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: scale(1.05);
+}
+
+.skill-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* General mobile styling (for smaller screens) */
+@media screen and (max-width: 768px) {
+    body {
+        width: 100%;
+        display: grid;
+    }
+    .container {
+        flex-direction: column;
+        height: auto;
+        width: 110%;
+        padding: 10px;
+        display: grid;
+    }
+
+    .navbar {
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        /* padding: 15px; */
+    }
+
+    .navbar-left, .navbar-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-right {
+        justify-content: flex-end;
+    }
+
+    .navbar-left a, .navbar-right a {
+        /* padding: 10px 15px; */
+        text-align: center;
+    }
+
+    .navbar-right input[type="color"] {
+        margin-top: 10px;
+    }
+
+    .left {
+        display:grid;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .right {
+        display: flex;
+        justify-content: center; /* Centers the shell div horizontally */
+        align-items: center; /* Centers the shell div vertically */
+        width: 100%; /* Ensures the div takes the full width of the container */
+    }
+
+    .bio-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+        /* grid-template-columns: 1fr;
+        gap: 10px;
+        height: auto;
+        justify-content: center;
+        text-align: center; */
+    }
+
+    .bio-photo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .photo {
+        max-width: 150px; /* Set a max-width to avoid the image being too large */
+        width: 100%; /* Ensure the image resizes properly */
+    }
+
+    .bio-summary {
+        text-align: center;
+        width: 100%;
+    }
+
+    .description {
+        font-size: 0.8rem;
+    }
+
+    .shell {
+        width: 95%; /* Set a relative width to the screen size */
+        max-width: 400px; /* Optional: Limit max-width so it doesn’t grow too big */
+        /* border: 1px solid #ccc; */
+        border-radius: 8px;
+        background-color: black;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .skill-cards table {
+        width: 100%;
+        border-spacing: 5px;
+        display: block;
+        border-collapse: collapse;
+        background-color: #e0f7fa;
+    }
+
+    .skills-table th, .skills-table td {
+        text-align: left;
+        padding: 10px;
+        word-wrap: break-word; /* Ensure content wraps */
+    }
+}
+
+/* For larger screens */
+@media screen and (min-width: 769px) {
+    .container {
+        flex-direction: row;
+    }
+    
+    .left {
+        width: 60%;
+    }
+
+    .right {
+        width: 40%;
+    }
 }

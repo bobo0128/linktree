@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yingbo Liu's Portfolio</title>
-    <link rel="stylesheet" href="./css/global.css" />
-    <link rel="stylesheet" href="index.css" />
-    <script defer src="./assets/fontawesome/js/fontawesome.min.js"></script>
-    <script defer src="./assets/fontawesome/js/all.min.js"></script>
-  </head>
 
-  <body>
-    <nav class="navbar">
-      <!-- Navbar Left -->
-      <div class="navbar-left">
-        <a href="#" tabindex="1" onclick="showHome()">Home</a>
-        <a href="#" tabindex="2" onclick="loadFunProjects()">Fun projects</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yingbo Liu's Portfolio</title>
+  <link rel="stylesheet" href="./css/global.css" />
+  <link rel="stylesheet" href="index.css" />
+  <script defer src="./assets/fontawesome/js/fontawesome.min.js"></script>
+  <script defer src="./assets/fontawesome/js/all.min.js"></script>
+  <script src="./utils/constants.js"></script>
+</head>
 
-      <!-- Navbar Right -->
-      <div class="navbar-right">
+<body>
+  <nav class="navbar">
+    <!-- Navbar Left -->
+    <div class="navbar-left">
+      <!-- <a href="#" tabindex="1" onclick="showHome()">Home</a>
+        <a href="#" tabindex="2" onclick="loadFunProjects()">Fun projects</a> -->
+      <h2 id="banner">Hi, I am Yingbo Liu.</h2>
+    </div>
+
+    <!-- Navbar Right -->
+    <div class="navbar-right">
         <!-- Color Picker -->
         <input
           type="color"
@@ -27,135 +30,62 @@
           value="#ffffff"
           title="Choose Theme Color"
         />
-      </div>
-    </nav>
-    <!-- Main Container -->
-    <div class="container" id="content">
-      <div class="left">
-        <div class="left-top">
+    </div>
+  </nav>
+  <!-- Main Container -->
+  <div class="container" id="content">
+    <!-- Left Side -->
+    <div class="left">
+      <!-- First Row: Bio Photo and Bio Summary (side by side) -->
+      <div class="bio-row">
+        <div class="bio-photo">
           <img src="./images/bio.jpg" alt="My Photo" class="photo" />
         </div>
-        <div class="left-bottom">
-          <div class="icons">
-            <a href="https://www.linkedin.com" target="_blank"
-              ><i class="fa-brands fa-linkedin fa-xl"></i
-            ></a>
-            <a href="https://www.github.com" target="_blank"
-              ><i class="fa-brands fa-github fa-xl"></i
-            ></a>
+        <div class="bio-summary">
+          <div class="description" id="bio-summary">
           </div>
-          <div class="description">
-            Hi, I'm Yingbo Liu, a full-stack developer with expertise in Java
-            and React. I love building scalable and secure web applications.
+          <div class="icons">
+            <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin fa-xl"
+                style="color: #74c0fc"></i></a>
+            <a href="https://www.github.com" target="_blank"><i class="fab fa-github fa-xl"></i></a>
+            <i id="emailIcon" class="fa-solid fa-envelope fa-2xl" style="color: #1456c8;" onclick="showContactForm()"></i>
+            <div id="contactForm">
+              <div class="close-button" onclick="hideContactForm()">✖</div>
+              <form id="form">
+                <input type="email" id="email" name="email" placeholder="Your Email" required />
+                <input type="text" id="name" name="name" placeholder="Your Name" required />
+                <textarea id="message" name="message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit">Send</button>
+              </form>
+              <div class="success-message">Thank you for contacting, I will reach out as soon as possible.</div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="right">
-        <div class="shell" id="shell">
-          <div class="output-line">Welcome to my shell playground!</div>
-          <div class="output-line">Type 'list' for available commands.</div>
-          <div class="input-line" id="input-line">></div>
+      <!-- Second Row: Skill Cards in a Table -->
+      <div class="skill-cards">
+        <div class="text">
+          <h1>Explore my skills</h1>
         </div>
+        <table id="skill-table"></table>
       </div>
     </div>
 
-    <script>
-      const COMMANDS = {
-        list: "",
-        whoami:
-          "I am a full-stack developer with expertise in Java, React, and web technologies.",
-        bio: "Bio: A passionate developer with a focus on building scalable and secure applications.",
-      };
+    <div class="right">
+      <div class="shell" id="shellDiv">
+        <div class="output-line">Welcome to my shell playground!</div>
+        <div class="output-line">Type 'list' for available commands.</div>
+        <div class="input-line" id="input-line">></div>
+      </div>
+    </div>
+  </div>
 
-      COMMANDS.list = `
-        <ul>
-        ${Object.keys(COMMANDS)
-          .map((cmd) => `<li onclick="simulateCommand('${cmd}')">${cmd}</li>`)
-          .join("")}
-        </ul>`;
-      // Prevent default page reload for "Fun projects" by loading content dynamically
-      function loadFunProjects() {
-        const contentDiv = document.getElementById("content");
-        contentDiv.innerHTML = `
-                <h2>Fun Projects</h2>
-                <p>Here are some of the projects I've worked on...</p>
-                <!-- Add more details about projects here -->
-            `;
-      }
+  <script src="./js/colorPicker.js"></script>
+  <script src="./js/navMenuEvent.js"></script>
+  <script src="./js/loadSkills.js"></script>
+  <script src="./js/shell.js"></script>
+  <script src="./js/loadBio.js"></script>
+  <script src="./js/typingEffect.js"></script>
+  <script src="./js/contactForm.js"></script>
 
-      function showHome() {
-        location.reload();
-      }
-
-      // Function to simulate a user command when clicking on a list item
-      function simulateCommand(command) {
-        inputLine.innerText = `> ${command}`;
-        const event = new KeyboardEvent("keydown", { key: "Enter" });
-        document.dispatchEvent(event);
-      }
-
-      // Shell interaction
-      const shell = document.getElementById("shell");
-      const inputLine = document.getElementById("input-line");
-
-      // Color picker for theme color
-      const colorPicker = document.getElementById("colorPicker");
-      colorPicker.addEventListener("input", (event) => {
-        const themeColor = event.target.value;
-
-        // Apply the theme color to various parts of the page
-        document.body.style.backgroundColor = themeColor; // Background color
-        document.getElementById("navbar").style.backgroundColor = themeColor; // Navbar color
-        document.getElementById("shell").style.backgroundColor = themeColor; // Shell background color
-      });
-
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          console.log("input line:" + inputLine.innerText);
-          const command = inputLine.innerText.replace(">", "").trim();
-
-          let output =
-            inputLine.innerText + "<br>" + COMMANDS[command] ||
-            'Command not found. Try "list" for available commands.';
-
-          const newOutputLine = document.createElement("div");
-          newOutputLine.classList.add("output-line");
-          newOutputLine.innerHTML = output;
-          shell.insertBefore(newOutputLine, inputLine);
-
-          inputLine.innerText = "> ";
-          shell.scrollTop = shell.scrollHeight;
-        } else {
-          console.log(
-            "event code:" +
-              event.keyCode +
-              ", event key:" +
-              event.key +
-              ", event key length:" +
-              event.key.length
-          );
-          if (event.key.length == 1) {
-            inputLine.innerText += event.key;
-          } else {
-            const keyID = event.keyCode;
-            console.log(keyID);
-            switch (keyID) {
-              case 8: //backspace
-                let inputValue = inputLine.innerText;
-                inputValue =
-                  inputValue.length > 0
-                    ? inputValue.substring(0, inputValue.length - 1)
-                    : inputValue;
-                inputLine.innerText = inputValue;
-                break;
-              // case 32:
-              //     inputLine.innerText += " ";
-              //     console.log("inputLine.innerText after space:"+inputLine.innerText);
-              //     break;
-            }
-          }
-        }
-      });
-    </script>
-  </body>
 </html>
